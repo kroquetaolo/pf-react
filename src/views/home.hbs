@@ -1,0 +1,24 @@
+<div class="flex flex-col justify-center mt-4 mx-8">
+    {{#each home_items}}
+        <div class="my-2">
+            <h2 class="text-orange-400/90 text-5xl">{{title}}</h2>
+            <p class="ml-8 my-2">{{description}}</p>
+            <div class="flex gap-8">
+                {{#each items}}
+                    <div class="relative overflow-hidden w-60 h-80 rounded-3xl cursor-pointer text-2xl font-bold bg-orange-400 ">
+                        <a href="{{url}}"  class="z-40 absolute w-full h-full peer"></a>
+                        <div class="cart-circle-top bg-orange-300"></div>
+                        <div class="cart-circle-bottom bg-orange-300">
+                            <h3 class="text-4xl text-black">{{title}}</h3>
+                            <p class="text-neutral-600">{{description}}</p>
+                        </div>
+                        <div class="w-full h-full items-center justify-center flex uppercase">
+                            <h3 class="text-4xl">{{title}}</h3>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    {{/each}}
+</div>
+

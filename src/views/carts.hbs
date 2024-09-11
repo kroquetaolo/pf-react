@@ -1,0 +1,24 @@
+<h1 class="cart-title">TU CARRITO!</h1>
+<main class="cart-container">
+    {{#each carts}}
+        <div>
+            <h3>Producto {{@index}}</h3>
+            <hr>
+            <p>TITULO: {{this.product_id.title}}</p>
+            <p>PRECIO: {{this.product_id.price}}</p>
+            <p>STOCK: {{this.product_id.stock}}</p>
+            <hr>
+            <p>Cantidad: {{this.quantity}}</p>
+            {{#if (compareFirst this.quantity this.product_id.stock)}}
+                <p>Sin Stock</p>
+            {{/if}}
+            <button id="remove-product-button-{{@index}}" class="remove-product-button" cart-to-remove="{{cart_id}}" product-to-remove="{{this.product_id._id}}"> QUITAR</button>
+        </div>
+    {{/each}}
+    {{#if (isEmpty carts)}}
+        <button> Aún no tienes ningun Producto </button>
+    {{else}}
+        <button id="cart-purchase-button" data-cart-id="{{cart_id}}"> Realizar compra </button>
+    {{/if}}
+</main>
+<script src="/js/cart.js"></script>

@@ -1,0 +1,143 @@
+###
+GET http://localhost:8080/api/products?limit=3&page=4
+
+###
+GET http://localhost:8080/api/products
+
+###
+GET http://localhost:8080/api/products?filter_key=status&filter_value=false
+
+###
+DELETE  http://localhost:8080/api/products/132123
+
+###
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+    "title": "Aguacate",
+    "description": "un aguacate maduro",
+    "stock": 10,
+    "code": "V016",
+    "price": 150,
+    "thumbnail": ["aguacate-Primary.jpg", "aguacate-Secundary.jpg"]
+}
+
+###
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+	{
+		"title": "Pera",
+		"description": "una pera jugosa",
+		"price": 10,
+		"thumbnail": [
+			"pera-Primary.jpg",
+			"pera-Secundary.jpg"
+		],
+		"code": "V013",
+		"stock": 150,
+		"status": true
+	}
+
+###
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{   
+    "title": "Papaya",
+    "description": "una papaya dulce",
+    "stock": 8,
+    "code": "V017",
+    "price": 120
+}
+
+###
+PUT http://localhost:8080/api/products/6633cf7a3df0039f0d639e1f
+Content-Type: application/json
+
+{   
+    "newValue": "Palta",
+    "key": "title"
+}
+
+###
+GET http://localhost:8080/api/carts/
+
+###
+GET http://localhost:8080/api/carts/66426ce38127f4484af49b96
+
+###
+PUT http://localhost:8080/api/carts/66426fe688a588ca69739f72/products/6633cf7a3df0039f0d639e1f
+
+###
+POST http://localhost:8080/api/carts/66426fe688a588ca69739f72
+Content-Type: application/json
+
+{
+    "products": [
+		{
+			"product_id": "6633ec98c74d8e986a678073",
+			"quantity": 1
+		},
+		{
+			"product_id": "6633ec98c74d8e986a678077",
+			"quantity": 1
+		}
+	]
+}
+
+###
+DELETE http://localhost:8080/api/carts/66426fe688a588ca69739f72/products/6633cf7a3df0039f0d639e1f
+
+###
+DELETE http://localhost:8080/api/carts/66426fe688a588ca69739f72?type=products
+
+###
+POST http://localhost:8080/api/sessions/login
+Content-Type:  application/json
+
+{
+	"email": "benja@gmail.com",
+	"password": "123"
+}
+
+###
+POST http://localhost:8080/api/sessions/login
+Content-Type:  application/json
+
+{
+	"email": "adminCoder@coder.com",
+	"password": "adminCod3r123"
+}
+
+
+###
+POST http://localhost:8080/api/sessions/register
+Content-Type:  application/json
+
+{
+	"last_name": "perez"
+}
+
+### 
+POST http://localhost:8080/api/sessions/register
+Content-Type:  application/json
+
+{
+	"email": "probandoerrores@gmail.com",
+	"age": "1111-11-11T00:00:00.000+00:00",
+	"first_name": "manolo",
+	"password": "asdasd"
+
+}
+
+
+###
+GET http://localhost:8080/api/sessions/current
+
+###
+GET http://localhost:8080/users
+
+###
+GET http://localhost:8080/api/sessions/logout

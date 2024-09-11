@@ -1,0 +1,24 @@
+<main>
+    <h1>USERS!</h1>
+    <hr>
+    <div>
+        {{#each users}}
+        <div>
+            <br>
+            <h2>Name: {{first_name}} {{last_name}}</h2>
+            <p>Email: {{email}}</p>
+            <p>Rol: {{rol}}</p>
+            <p>cart: {{cart._id}}</p>
+            <p>Age: {{getAge age}} yrs</p>
+
+            <button class="switchUserButton border border-neutral-200 px-4 py-2" data-user-id="{{_id}}"> switch rol </button>
+
+            <br>
+        </div>
+        <hr>
+
+        {{/each}}
+    </div>
+</main>
+
+<script src="/js/users-admin.js"></script>

@@ -1,0 +1,40 @@
+###
+POST http://localhost:8080/api/sessions/login
+Content-Type:  application/json
+
+{
+	"email": "adminCoder@coder.com",
+	"password": "adminCod3r123"
+}
+
+### todos los datos válidos
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+    "title": "Pomelo Africano",
+    "description": "un pomelo de otro continente",
+    "stock": 10,
+    "code": "V049",
+    "price": 150,
+    "thumbnail": ["Pomelo-africano-Primary.jpg", "Pomelo-africano-Secundary.jpg"]
+}
+
+### falta el título y el precio
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+    "description": "un aguacate maduro",
+    "stock": 10,
+    "code": "V016",
+    "thumbnail": ["aguacate-Primary.jpg", "aguacate-Secundary.jpg"]
+}
+
+###
+POST http://localhost:8080/api/users/premium/66a9131c3b1dc5861cb37a83
+Content-Type: application/json
+
+###
+DELETE http://localhost:8080/api/products/66a9ce21627ec83d47fea743
+Content-Type: application/json

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .comp-form-input {
+        @apply self-end focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-gray-800 text-zinc-500;
+    }
+    .nav-item-active {
+        @apply bg-orange-300 px-3 py-2 text-black font-bold;
+    }
+    .nav-item {
+        @apply  text-gray-300 hover:bg-zinc-800 hover:text-white;
+    }
+    .pagination-item {
+        @apply flex justify-center items-center mx-1 bg-zinc-900 rounded-lg w-11 h-11;
+    }
+    .home-item {
+        @apply flex flex-col justify-center items-center rounded-2xl w-72 h-72 m-2 bg-zinc-600 hover:bg-zinc-400 hover:text-black transition-colors
+    }
+    .cart-circle-bottom {
+        @apply absolute flex flex-col text-xl text-center items-end justify-end peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full -bottom-32 -right-16 w-36 h-44 rounded-full transition-all duration-500
+    }
+    .cart-circle-top {
+        @apply absolute peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] -top-32 -left-16 w-32 h-44 rounded-full transition-all duration-500
+    }
+}

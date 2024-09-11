@@ -1,0 +1,136 @@
+<header class="pb-20 relative z-50">
+    <nav class="bg-nav fixed w-full">
+        <div class="mx-auto px-2 sm:px-6 lg:px-8 shadow-navbar">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon when menu is closed. -->
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                        </svg>
+                        <!-- Icon when menu is open. -->
+                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex items-center justify-center lg:items-center lg:justify-normal">
+                    <!-- Logo -->
+                    <div class="flex items-center ml-11">
+                        <img class="h-10 w-auto" src="/logo.png"/>
+                        <div class="hidden items-center justify-center lg:flex">
+                            <p class="align-middle text-xl font-extrabold px-1 text-white">Shop</p>
+                            <p class="align-middle text-xl font-extrabold p-2 rounded-md text-black bg-orange-400">fruit</p>
+                        </div>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block text-center">
+                        <div class="flex space-x-4">
+                            {{#if (equals user.rol "admin") }}
+                                <a href="/users" class="rounded-md px-3 py-2 font-bold {{#if (equals_url current_url 'users')}} nav-item-active {{else}}nav-item {{/if}}"
+                                >Users</a>
+                                <a href="/mockingproducts" class="rounded-md px-3 py-2 font-bold {{#if (equals_url current_url 'mockingproducts')}} nav-item-active {{else}}nav-item {{/if}}"
+                                >Mock</a>
+                            {{/if}}
+                            {{#if user}}
+                                <a href="/profile" class="rounded-md px-3 py-2 {{#if (equals_url current_url 'profile')}} nav-item-active {{else}}nav-item {{/if}}"
+                                >Profile</a>
+                            {{/if}}
+                            <a href="/" class="rounded-md px-3 py-2 {{#if (equals current_url '/')}} nav-item-active {{else}}nav-item {{/if}}"
+                            >Home</a>
+                            <a href="/products" class="rounded-md px-3 py-2 {{#if (equals_url current_url 'products')}} nav-item-active {{else}}nav-item {{/if}}"
+                            >Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    {{#if user.cart}}
+                        <a href="/carts/{{user.cart}}" class="relative rounded-full bg-zinc-800 px-3 py-2 text-gray-400 hover:text-white hover:bg-zinc-700 transition-all">
+                            <div class="flex justify-center items-center gap-1">
+                                <p id="cart-number">0</p><i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </a>
+                    {{/if}}
+
+                    <!-- Profile dropdown -->
+                    <div class="relative ml-3">
+                        <button type="button"
+                            class="relative flex gap-3 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            id="user-menu-button"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                        >
+                            <span class="sr-only">Open user menu</span>
+                            {{#if user}}<p class="flex items-center">{{user.first_name}} </p>{{/if}}
+                            <div class="text-3xl"><i class="fa-solid fa-circle-user"></i></div>
+                        </button>
+
+                        <div class="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                            role="menu"
+                            aria-orientation="vertical"
+                            aria-labelledby="user-menu-button"
+                            tabindex="-1"
+                        >
+                            <div class="block px-4 py-2 text-sm text-black border-b-1 border-black">
+                                <p>Bienvenido {{#if user}}{{user.first_name}} {{user.last_name}}{{else}}Invitado{{/if}} </p>
+                                {{#if user}} <p>rol: <span{{#if user.isAdmin}} class="text-orange-400" {{/if}}>{{user.rol}}</span></p>{{/if}}                                
+                            </div> 
+                            <button class="flex items-center w-full text-black border-b-1 border-black"
+                                type="button"
+                                data-modal-target="regist-modal"
+                            >
+                                <div class="ml-2"><i class="fa-solid fa-user-plus orange"></i></div>
+                                <p class="block px-2 py-2 text-sm text-gray-700"
+                                >regist</p>
+                            </button>
+
+                            <button class="flex items-center w-full text-black border-b-1 border-black"
+                                type="button"
+                                data-modal-target="login-modal"
+                            >
+                                <div class="ml-2 text-xl"><i class="fa-solid fa-circle-user"></i></div>
+                                <p class="block px-2 py-2 text-sm text-gray-700"
+                                >login</p>
+                            </button>
+                            {{#if user}}
+                                <div class="flex items-center text-black">
+                                    <div class="ml-2"><i class="fa-solid fa-right-from-bracket"></i></div>
+                                    <a href="/api/sessions/logout"
+                                            class="block px-2 py-2 text-sm text-gray-700"
+                                        role="menuitem"
+                                        tabindex="-1"
+                                        id="user-menu-item-2"
+                                    >logout</a>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="hidden" id="mobile-menu">
+            <div class="space-y-1 px-2 pb-3 pt-2">
+                {{#if (equals user.rol "admin") }}
+                    <a href="/users" class="block rounded-md px-3 py-2 font-bold {{#if (equals_url current_url 'users')}} nav-item-active {{else}}nav-item {{/if}}"
+                    >Users</a>
+                    <a href="/mockingproducts" class="block rounded-md px-3 py-2 font-bold {{#if (equals_url current_url 'mockingproducts')}} nav-item-active {{else}}nav-item {{/if}}"
+                    >Mock</a>
+                {{/if}}
+                {{#if user}}
+                    <a href="/profile" class="block rounded-md px-3 py-2 {{#if (equals_url current_url 'profile')}} nav-item-active {{else}}nav-item {{/if}}"
+                    >Profile</a>
+                {{/if}}
+                <a href="/" class="block rounded-md px-3 py-2 {{#if (equals current_url '/')}} nav-item-active {{else}}nav-item {{/if}}"
+                >Home</a>
+                <a href="/products" class="block rounded-md px-3 py-2 {{#if (equals_url current_url 'products')}} nav-item-active {{else}}nav-item {{/if}}"
+                >Productos</a>
+
+            </div>
+        </div>
+    </nav>
+
+</header>

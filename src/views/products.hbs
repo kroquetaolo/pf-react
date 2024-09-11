@@ -1,0 +1,83 @@
+<main class="relative z-10 ">
+    <div class="grid grid-cols-1 mx-auto md:grid-cols-4 sm:grid-cols-3 lg:w-4/5 gap-4">
+        {{#each products}}
+            <div class="relative border-2 border-neutral-600 group m-5 overflow-hidden text-neutral-800 w-80 h-[30rem] rounded-2xl hover:duration-700 duration-700">
+                <p class="absolute text-lg font-bold px-2 py-1 right-2 top-2 bg-white/90 rounded-xl border border-orange-400/90">${{price}}</p>
+                <img class="w-full h-[calc(100%-2.6rem)] mb-auto object-cover rounded-md cursor-pointer"
+                    id="products-img" data-url="/products/{{_id}}"
+                    src="
+                        {{#if ../isMockProduct}}
+                            {{thumbnail}}
+                        {{else}}
+                            {{#if (getFirst thumbnail)}}
+                                {{checkPath (getFirst thumbnail)}}
+                            {{else}}
+                                /assets/default-image.jpg
+                            {{/if}}
+                        {{/if}}"
+                        >
+
+                <div class="absolute bg-gray-50 -bottom-[70%] w-full h-[calc(100%-4.4rem)] group-hover:h-[80%] p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
+                    <span class="text-orange-400 font-bold text-xs">{{#if category}}{{category}}{{else}} Fruta {{/if}}</span>
+                    <span class="font-bold text-3xl">{{title}}</span>
+                    <p class="mb-2">{{description}}</p>
+                    <button id="products-button" class="border-2 mt-auto border-zinc-700 rounded-lg px-2 py-1 hover:text-gray-50 hover:border-zinc-600 hover:bg-zinc-700 transition" data-url="/products/{{_id}}">Ver detalle</button>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    {{#if pagination}} 
+        <div class="flex justify-center items-center mt-4">
+            <div class="{{#unless hasPrevPage}} pointer-events-none bg-zinc-800 cursor-not-allowed {{/unless}}pagination-item bg-orange-400 text-black">
+                <a class="h-full w-full flex items-center justify-center" href={{prevLink}}>❰</a>
+            </div>
+            
+            {{#if pagination.has_first_page}}
+                <div class="pagination-item">
+                    <a class="h-full w-full flex items-center justify-center" href='{{pagination.url}}1'>1</a>
+                </div>
+            {{/if}}
+            <ul class="flex justify-center items-center">
+                
+                {{#if pagination.has_first_page}}
+                    <p class="pagination-item border-none bg-transparent hidden sm:flex">•••</p>
+                {{/if}}
+
+                {{#if pagination.first_five}}
+                    {{#each pagination.first_five}}
+                        <li class="pagination-item {{#if (equals ../pagination.active this)}}border border-orange-400 {{/if}}">
+                            <a class="h-full w-full flex items-center justify-center" href='{{../pagination.url}}{{this}}'>
+                                {{pagination.url}}{{this}}
+                            </a>
+                        </li>
+                    {{/each}}
+                {{/if}}
+
+                {{#if pagination.index }}
+                    <li class="pagination-item border border-orange-400"><p class="h-full w-full flex items-center justify-center">{{pagination.index}}</p></li>
+                {{/if}}
+
+                {{#if pagination.last_five}}
+                    {{#each pagination.last_five}}
+                        <li class="pagination-item"> <a class="h-full w-full flex items-center justify-center" href="{{../pagination.url}}{{this}}">{{this}}</a></li>
+                    {{/each}}
+                {{/if}}
+
+                
+                {{#if pagination.has_last_page}}
+                    <p class="pagination-item border-none bg-transparent hidden sm:flex">•••</p>
+                    <li class="pagination-item">
+                        <a class="h-full w-full flex items-center justify-center" href='{{pagination.url}}{{pagination.last}}'>{{pagination.last}}</a>
+                    </li>
+                {{/if}}
+            </ul>
+
+            <div class="{{#unless hasNextPage}} pointer-events-none bg-zinc-800 cursor-not-allowed {{/unless}}pagination-item bg-orange-400 text-black">
+                <a class="h-full w-full flex items-center justify-center " href={{nextLink}}>❱</a>
+            </div>
+
+        </div>
+    {{/if}}
+
+</main>

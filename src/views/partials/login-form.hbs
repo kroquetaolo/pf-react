@@ -1,0 +1,24 @@
+<form class="flex flex-col items-center gap-2 py-5" action="/api/sessions/login" method="post">
+
+    <div class="flex">
+        <span class="w-20">Email: </span>
+        <input class="comp-form-input"
+            type="email" id="email" name="email" placeholder="Email"
+        />
+    </div>
+    <div class="flex">
+        <span class="w-20">Password: </span>
+        <input class="comp-form-input"
+            type="password" id="password" name="password" placeholder="Password"
+        />
+    </div>
+    <input class="{{#if user}} bg-red-500 cursor-not-allowed {{else}}bg-orange-600 text-black hover:bg-orange-400{{/if}} transition-colors rounded-md px-4 py-2 mt-2 font-bold"
+        {{#if user}}disabled{{/if}} type="submit"  value="Login"
+    />
+    {{#if user}}<p>You are already logged as {{user.first_name}} </p>
+    {{else}}
+        <p>Don't have an account yet? <a href="/register" class="text-orange-400 underline">Regist</a> here</p>
+        <p>Or login with: <a class="profile-loginwith" href="/api/sessions/github"><i class="fa-brands fa-github"></i></a></p>
+        <div><a class="underline hover:text-orange-400 transition-colors" href="/lostpassword">Forgot Password?</a> | <a class="transition-colors underline hover:text-orange-400" href=""> Volver a enviar el mensaje de correo electrónico de confirmación</a></div>
+    {{/if}}
+</form>

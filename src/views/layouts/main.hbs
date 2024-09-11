@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/267b35900f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{__dirname}}/styles.css">
+    <title>Shop Fruit</title>
+</head>
+<body class="bg-black text-white mb-8">
+    {{> header}}
+
+    {{{ body }}}
+
+    <div id="regist-modal" tabindex="-2" aria-hidden="true" class="hidden bg-modal overflow-y-auto overflow-x-hidden fixed w-full inset-0 h-full max-h-full z-50">
+        <div class="relative p-4 w-full max-w-2xl max-h-full mx-auto mt-16">
+            <div class="relative rounded-lg shadow bg-nav">
+                <div class="flex flex-col items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="regist-modal"
+                        >
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="flex flex-shrink-0 items-center mb-8">
+                        <img class="h-10 w-auto" src="/logo.png"/>
+                        <div class="hidden items-center justify-center sm:flex">
+                            <p class="align-middle text-xl font-extrabold px-1 text-white">Shop</p>
+                            <p class="align-middle text-xl font-extrabold p-2 rounded-md text-black bg-orange-400">fruit</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-extrabold">
+                        Regist for free
+                    </h3>
+                    <p class=" text-zinc-400">and enhance your experience.</p>
+                </div>
+                <!-- Modal body -->
+                {{> register-form}}
+            </div>
+        </div>
+    </div>
+
+    <div id="login-modal" tabindex="-2" aria-hidden="true" class="hidden bg-modal overflow-y-auto overflow-x-hidden fixed w-full inset-0 h-full max-h-full z-50">
+        <div class="relative p-4 w-full max-w-2xl max-h-full mx-auto mt-16">
+            <div class="relative rounded-lg shadow bg-nav">
+                <div class="flex flex-col items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="login-modal"
+                        >
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="flex flex-shrink-0 items-center mb-8">
+                        <img class="h-10 w-auto" src="/logo.png"/>
+                        <div class="hidden items-center justify-center sm:flex">
+                            <p class="align-middle text-xl font-extrabold px-1 text-white">Shop</p>
+                            <p class="align-middle text-xl font-extrabold p-2 rounded-md text-black bg-orange-400">fruit</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-extrabold">
+                        Member Login
+                    </h3>
+                    <p class=" text-zinc-400">Access your Shopfruit account.</p>
+                </div>
+                <!-- Modal body -->
+                {{> login-form}}
+            </div>
+        </div>
+    </div>
+    <script>
+        {{#if user}} window.user = true{{/if}}
+    </script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

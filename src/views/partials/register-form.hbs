@@ -1,0 +1,32 @@
+<form class="flex flex-col items-center gap-2 py-5" action="/api/sessions/register" method="post">
+    
+    <div class="flex min-w-72">
+        <span class="w-24">Email: </span>
+        <input class="comp-form-input w-[70%]" type="email" name="email" placeholder="Email">
+    </div>
+    <div class="flex min-w-72">
+        <span class="w-24">First name: </span>
+        <input class="comp-form-input w-[70%]" type="text" name="first_name" placeholder="First name">
+    </div>
+    <div class="flex min-w-72">
+        <span class="w-24">Last name: </span>
+        <input class="comp-form-input w-[70%]" type="text" name="last_name" placeholder="Last name">
+    </div>
+    <div class="flex min-w-72">
+        <span class="w-24">Date: </span>
+        <input class="comp-form-input w-[70%]" type="date" name="age" placeholder="date">
+    </div>
+    <div class="flex min-w-72">
+        <span class="w-24">Password: </span>
+        <input class="comp-form-input w-[70%]" type="password" name="password" placeholder="Password">
+    </div>
+
+    <input class="{{#if user}} bg-red-500 cursor-not-allowed {{else}}bg-orange-600 text-black hover:bg-orange-400{{/if}} rounded-md px-4 py-2 mt-2 font-bold"
+        {{#if user}}disabled{{/if}} type="submit"  value="Regist"
+    />
+        {{#if user}}<p>You are already logged as {{user.first_name}} </p>
+    {{else}}
+        <p> Already have an account? <a  class="text-orange-400 underline" href="/login">Login</a> here</p>
+        <p>Or login with: <a class="profile-loginwith" href="/api/sessions/github"><i class="fa-brands fa-github"></i></a> </p>
+    {{/if}}
+</form>
