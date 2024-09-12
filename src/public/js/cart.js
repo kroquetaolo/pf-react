@@ -2,7 +2,7 @@ const purchaseButton = document.getElementById('cart-purchase-button');
 if(purchaseButton){ 
     purchaseButton.addEventListener('click', () => {
         const cart_id = purchaseButton.getAttribute('data-cart-id'); 
-        fetch(`https://${url}/api/carts/${cart_id}/purchase`, {
+        fetch(`${protocol}//${url}/api/carts/${cart_id}/purchase`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const product_id = button.getAttribute('product-to-remove');
             const cart_id = button.getAttribute('cart-to-remove');
 
-            fetch(`https://${url}/api/carts/${cart_id}/products/${product_id}`, {
+            fetch(`${protocol}//${url}/api/carts/${cart_id}/products/${product_id}`, {
                 method: 'DELETE',
                 headers: { contentType: 'application/json'}
             })

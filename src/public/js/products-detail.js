@@ -1,8 +1,10 @@
 const addToCartButton = document.getElementById('add-to-cart-button');
 
 addToCartButton.addEventListener('click', () => {
-    const _id = addToCartButton.getAttribute('data-product-id'); 
-    fetch(`https://${url}/api/products/${_id}`)
+    
+    if(cartNumberElement.textContent !== 0 ) cartNumberElement.textContent++
+    const _id = addToCartButton.getAttribute('data-product-id');
+    fetch(`${protocol}//${url}/api/products/${_id}`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
@@ -14,13 +16,12 @@ addToCartButton.addEventListener('click', () => {
             const cart_id = user.payload.cart._id
             const product_id = data.payload._id
 
-            fetch(`https://${url}/api/carts/${cart_id}/products/${product_id}`, {
+            fetch(`${protocol}//${url}/api/carts/${cart_id}/products/${product_id}`, {
                 method: 'PUT',
                 headers: { contentType: 'application/json'}
             })
             .then(res => res.json())
             .then(data => {
-                console.log('Respuesta PUT exitosa:', data);
                 window.updateCartNumber()
             })
             .catch(error => {

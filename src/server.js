@@ -25,16 +25,15 @@ const httpServer = app.listen(port, error => {
     if(error) logger().error(error.message)
     const { address, port } = httpServer.address();
     host = address === '::' ? 'localhost' : address;
-    const server_address = `https://${host}:${port}`; // Asigna el valor de la URL del servidor
+    const server_address = `https://${host}:${port}`;
     logger().info(`Escuchando en ${server_address}`);
 })
 
 new SwaggerUtil(app).init()
 
 const socketServer = new Server(httpServer);
-
 app.use(cors({
-    origin: 'https://localhost:'+port,
+    origin: 'http://localhost:8080',
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));

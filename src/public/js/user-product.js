@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target && event.target.classList.contains('deleteButton')) {
             const productId = event.target.getAttribute('data-product-id');
 
-            fetch(`https://${url}/api/products/${productId}`, {
+            fetch(`${protocol}//${url}/api/products/${productId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

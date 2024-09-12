@@ -1,4 +1,6 @@
 const url = window.location.host;
+const protocol = window.location.protocol;
+
 
 const user_menu_button = document.querySelector('#user-menu-button')
 const menu_button = document.querySelector('[aria-controls="mobile-menu"]')
@@ -43,7 +45,7 @@ close_modal_buttons.forEach(button => {
 //NUMERO DE CARTS
 const userData = async () => {
     try {
-        const response = await fetch(`https://${url}/api/sessions/current`);
+        const response = await fetch(`${protocol}//${url}/api/sessions/current`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

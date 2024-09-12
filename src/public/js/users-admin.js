@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     usersList.addEventListener('click', (event) => {
         if (event.target && event.target.classList.contains('switchUserButton')) {
             const userId = event.target.getAttribute('data-user-id');
-            fetch(`https://${url}/api/users/premium/${userId}`, {
+            fetch(`${protocol}//${url}/api/users/premium/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
