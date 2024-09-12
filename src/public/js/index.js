@@ -43,7 +43,7 @@ close_modal_buttons.forEach(button => {
 //NUMERO DE CARTS
 const userData = async () => {
     try {
-        const response = await fetch(`http://${url}/api/sessions/current`);
+        const response = await fetch(`https://${url}/api/sessions/current`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

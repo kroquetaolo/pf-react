@@ -31,7 +31,7 @@ export const initializePassport = () => {
     passport.use('github', new GithubStrategy({
         clientID: passportClientID,
         clientSecret: passportClientSecret,
-        callbackURL: 'http://localhost:8080/api/sessions/githubcallback'
+        callbackURL: 'https://localhost:8080/api/sessions/githubcallback'
     }, async (accessToken, refreshToken, profile, done) => {
         try {
             const user = await usersService.getUserBy({email: profile._json.email});

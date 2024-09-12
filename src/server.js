@@ -19,10 +19,14 @@ import SwaggerUtil from './utils/swagger.js';
 const app = express()
 
 const { port, mongoUrl, cookiePassword, sessionPasword } = config
+export let host;
 
 const httpServer = app.listen(port, error => {
     if(error) logger().error(error.message)
-    logger().info('Escuchando en http://localhost:'+port)
+    const { address, port } = httpServer.address();
+    host = address === '::' ? 'localhost' : address;
+    const server_address = `https://${host}:${port}`; // Asigna el valor de la URL del servidor
+    logger().info(`Escuchando en ${server_address}`);
 })
 
 new SwaggerUtil(app).init()
@@ -30,7 +34,7 @@ new SwaggerUtil(app).init()
 const socketServer = new Server(httpServer);
 
 app.use(cors({
-    origin: 'http://localhost:'+port,
+    origin: 'https://localhost:'+port,
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));

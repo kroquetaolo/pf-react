@@ -3,8 +3,9 @@ import supertest from 'supertest'
 import config from '../src/config/config.js'
 
 import { faker } from "@faker-js/faker";
+import { host } from '../src/server.js';
 
-const requester = supertest('http://localhost:8080')
+const requester = supertest(`https://${host}`)
 
 describe('testing shopfruit', function () {
 

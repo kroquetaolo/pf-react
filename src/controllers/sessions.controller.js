@@ -1,3 +1,4 @@
+import { host } from "../server.js"
 import { CustomError } from "../service/errors/custom.error.js"
 import { EError } from "../service/errors/enums.js"
 import { generateUserError } from "../service/errors/info.js"
@@ -121,7 +122,7 @@ class SessionsController {
             html: `
                 <button
                 style="font-weight: bold; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer;" 
-                > <a href="http://localhost:8080/resetpassword/?token=${token}"> Click para cambiar contraseña  </a></button>
+                > <a href="https://${host}/resetpassword/?token=${token}"> Click para cambiar contraseña  </a></button>
             `
         })
         res.sendSuccess({success: `${token}`})
