@@ -19,10 +19,17 @@ export default class TicketsDao {
                 purchaser,
                 amount
             }
-            const ticket = await this.model.create(new_ticket)
-            result = {
-                message: 'Ticket created successfully',
-                ticket
+            if(amount !== 0) {
+                const ticket = await this.model.create(new_ticket)
+                result = {
+                    message: 'Ticket created successfully',
+                    ticket
+                }
+            } else {
+                result = {
+                    message: 'Ticket created successfully',
+                    ticket: new_ticket
+                }
             }
 
         } catch (error) {

@@ -16,7 +16,19 @@ if(purchaseButton){
         })
         .then(data => {
             console.log('Éxito:', data);
-            location.reload(true);
+            const has_items = data.payload.ticket.amount !== 0
+            Swal.fire({
+                icon: has_items ? "success" : "question",
+                title: has_items ? data.payload.message : "No items available to purchase",
+                html:  has_items ?`Ticket: ${data.payload.ticket.code}<br>
+                        Price: ${data.payload.ticket.amount}<br>
+                        Mail: ${data.payload.ticket.purchaser}` : 'check the stock before purchase'
+                        ,
+                showCloseButton: true
+            }).then(() => {
+                if(has_items) location.reload(true);
+            }); 
+            
         })
         .catch(error => {
             console.error('Hubo un problema con la solicitud Fetch:', error);

@@ -25,7 +25,7 @@ const httpServer = app.listen(port, error => {
     if(error) logger().error(error.message)
     const { address, port } = httpServer.address();
     host = address === '::' ? 'localhost' : address;
-    const server_address = `https://${host}:${port}`;
+    const server_address = `${host}:${port}`;
     logger().info(`Escuchando en ${server_address}`);
 })
 
